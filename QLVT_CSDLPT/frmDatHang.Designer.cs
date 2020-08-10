@@ -76,6 +76,7 @@
             this.colSOLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDONGIA = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dtpNGAY = new System.Windows.Forms.DateTimePicker();
             this.cmbKHO = new System.Windows.Forms.ComboBox();
             this.khoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtMAKHO = new DevExpress.XtraEditors.TextEdit();
@@ -99,7 +100,6 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.dtpNGAY = new System.Windows.Forms.DateTimePicker();
             masoDDHLabel = new System.Windows.Forms.Label();
             mANVLabel = new System.Windows.Forms.Label();
             nhaCCLabel = new System.Windows.Forms.Label();
@@ -149,7 +149,7 @@
             // mANVLabel
             // 
             mANVLabel.AutoSize = true;
-            mANVLabel.Location = new System.Drawing.Point(298, 52);
+            mANVLabel.Location = new System.Drawing.Point(315, 52);
             mANVLabel.Name = "mANVLabel";
             mANVLabel.Size = new System.Drawing.Size(56, 17);
             mANVLabel.TabIndex = 4;
@@ -158,7 +158,7 @@
             // nhaCCLabel
             // 
             nhaCCLabel.AutoSize = true;
-            nhaCCLabel.Location = new System.Drawing.Point(294, 109);
+            nhaCCLabel.Location = new System.Drawing.Point(311, 107);
             nhaCCLabel.Name = "nhaCCLabel";
             nhaCCLabel.Size = new System.Drawing.Size(60, 17);
             nhaCCLabel.TabIndex = 6;
@@ -310,6 +310,7 @@
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(23, 22);
             this.btnXoa.Text = "Xóa";
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -341,6 +342,7 @@
             this.btnUndo.Size = new System.Drawing.Size(23, 22);
             this.btnUndo.Text = "Undo";
             this.btnUndo.ToolTipText = "Undo";
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // btnRefresh
             // 
@@ -351,6 +353,7 @@
             this.btnRefresh.Size = new System.Drawing.Size(23, 22);
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.ToolTipText = "Refresh";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // datHangGridControl
             // 
@@ -460,6 +463,7 @@
             this.btnThemCT.Name = "btnThemCT";
             this.btnThemCT.Size = new System.Drawing.Size(23, 22);
             this.btnThemCT.Text = "Thêm";
+            this.btnThemCT.Click += new System.EventHandler(this.btnThemCT_Click);
             // 
             // btnXoaCT
             // 
@@ -478,6 +482,7 @@
             this.btnSuaCT.Name = "btnSuaCT";
             this.btnSuaCT.Size = new System.Drawing.Size(23, 22);
             this.btnSuaCT.Text = "Sửa";
+            this.btnSuaCT.Click += new System.EventHandler(this.btnSuaCT_Click);
             // 
             // btnLuuCT
             // 
@@ -487,6 +492,7 @@
             this.btnLuuCT.Name = "btnLuuCT";
             this.btnLuuCT.Size = new System.Drawing.Size(23, 22);
             this.btnLuuCT.Text = "Lưu";
+            this.btnLuuCT.Click += new System.EventHandler(this.btnLuuCT_Click);
             // 
             // btnUndoCT
             // 
@@ -586,6 +592,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Đặt hàng";
             // 
+            // dtpNGAY
+            // 
+            this.dtpNGAY.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.datHangBindingSource, "NGAY", true));
+            this.dtpNGAY.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNGAY.Location = new System.Drawing.Point(107, 103);
+            this.dtpNGAY.Name = "dtpNGAY";
+            this.dtpNGAY.Size = new System.Drawing.Size(149, 25);
+            this.dtpNGAY.TabIndex = 11;
+            // 
             // cmbKHO
             // 
             this.cmbKHO.DataSource = this.khoBindingSource;
@@ -615,7 +630,7 @@
             // txtNHACC
             // 
             this.txtNHACC.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.datHangBindingSource, "NhaCC", true));
-            this.txtNHACC.Location = new System.Drawing.Point(360, 106);
+            this.txtNHACC.Location = new System.Drawing.Point(398, 103);
             this.txtNHACC.Name = "txtNHACC";
             this.txtNHACC.Size = new System.Drawing.Size(123, 20);
             this.txtNHACC.TabIndex = 7;
@@ -628,7 +643,7 @@
             0,
             0,
             0});
-            this.txtMANV.Location = new System.Drawing.Point(360, 49);
+            this.txtMANV.Location = new System.Drawing.Point(398, 49);
             this.txtMANV.Name = "txtMANV";
             this.txtMANV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -795,14 +810,6 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1067, 0);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 588);
-            // 
-            // dtpNGAY
-            // 
-            this.dtpNGAY.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.datHangBindingSource, "NGAY", true));
-            this.dtpNGAY.Location = new System.Drawing.Point(107, 103);
-            this.dtpNGAY.Name = "dtpNGAY";
-            this.dtpNGAY.Size = new System.Drawing.Size(149, 25);
-            this.dtpNGAY.TabIndex = 11;
             // 
             // frmDatHang
             // 

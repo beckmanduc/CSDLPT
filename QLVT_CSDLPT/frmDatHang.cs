@@ -106,6 +106,7 @@ namespace QLVT_CSDLPT
         // DAT HANG
         private void btnSua_Click(object sender, EventArgs e)
         {
+            kt_btnSuaDH = true;
             int vitri = 0;
             vitri = datHangBindingSource.Position;
             if (KiemTra_MaSoDDH_TrongPN(((DataRowView)datHangBindingSource[vitri])["MasoDDH"].ToString()) == 1)
@@ -143,6 +144,7 @@ namespace QLVT_CSDLPT
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            kt_btnThemDH = true;
             vitriDH = datHangBindingSource.Position;
             //bindingNavigatorCTDH.Enabled = false;
             groupBox3.Enabled = txtMASODDH.Enabled = btnLuu.Enabled = btnUndo.Enabled = btnRefresh.Enabled = true;
@@ -205,7 +207,7 @@ namespace QLVT_CSDLPT
         private int KiemTraMaDDH(string maDDH)
         {
             using (SqlConnection conn = new SqlConnection(Program.connstr))
-            using (SqlCommand cmd = new SqlCommand("SP_KiemTraMSDDH_ThemDDH", conn))
+            using (SqlCommand cmd = new SqlCommand("sp_KiemTraMSDDH_ThemDDH", conn))
             {
 
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -225,6 +227,185 @@ namespace QLVT_CSDLPT
             if (cmbKHO.ValueMember != "" && cmbKHO.SelectedValue != null)
             {
                 txtMAKHO.Text = cmbKHO.SelectedValue.ToString();
+            }
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            datHangBindingSource.CancelEdit();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.datHangTableAdapter.Fill(this.dS.DatHang);
+            datHangGridControl.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnUndo.Enabled = btnRefresh.Enabled = true;
+            btnLuu.Enabled = groupBox3.Enabled = false;
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            string maDDH = "";
+            int vitri = 0;
+            vitri = datHangBindingSource.Position;
+
+            groupBox3.Enabled = false;
+
+            if (MessageBox.Show("Bạn có thật sự muốn xóa DDH này? ", "Xác nhận",
+                       MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                try
+                {
+                    if (KiemTra_XoaPN(((DataRowView)datHangBindingSource[vitri])["MasoDDH"].ToString()) == 1)
+                    {
+                        MessageBox.Show("Bạn không thể xóa Đặt hàng này được!\nĐặt hàng đã tồn tại CTDDH hoặc tồn tại Phiếu nhập\n", "",
+                        MessageBoxButtons.OK);
+                        return;
+                    }
+
+                    maDDH = ((DataRowView)datHangBindingSource[datHangBindingSource.Position])["MAKHO"].ToString(); // giữ lại để khi xóa bij lỗi thì ta sẽ quay về lại
+                    datHangBindingSource.RemoveCurrent();
+                    this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.datHangTableAdapter.Update(this.dS.DatHang);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa DDH. Bạn hãy xóa lại\n" + ex.Message, "",
+                        MessageBoxButtons.OK);
+                    this.datHangTableAdapter.Fill(this.dS.DatHang);
+                    datHangBindingSource.Position = datHangBindingSource.Find("MasoDDH", maDDH);
+                    return;
+                }
+            }
+
+        }
+
+        private int KiemTra_XoaPN(string maDDH)
+        {
+            // kiểm tra đk để xóa phiếu nhập
+            using (SqlConnection conn = new SqlConnection(Program.connstr))
+            using (SqlCommand cmd = new SqlCommand("sp_KiemTraMaDDH_XoaDatHang", conn))
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("MasoDDH", maDDH);
+
+                var returnParameter = cmd.Parameters.Add("@result", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return (int)returnParameter.Value;
+            }
+        }
+
+
+        // CTDH
+        private void btnThemCT_Click(object sender, EventArgs e)
+        {
+            btnXoaCT.Enabled = btnSuaCT.Enabled = false;
+
+            int count = 0;
+            count = gridView1.RowCount;
+
+            if (count == 0)
+            {
+                MessageBox.Show("Không thể tạo CTPDDH!\nVui lòng tạo DDH trước", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            vitriCTDH = cTDDHBindingSource.Position;
+            kt_btnThemCTDH = groupBox4.Enabled = btnLuuCT.Enabled = cmbVATTU.Enabled = true;
+            cTDDHGridControl.Enabled = txtMASODDH.Enabled = false;
+
+            txtMASODDH.Text = txtMASODDHDH.Text;
+            txtMAVT.Text = cmbVATTU.SelectedValue.ToString();
+            seSOLUONG.Text = seDONGIA.Text = "0";
+        }
+
+        private void btnSuaCT_Click(object sender, EventArgs e)
+        {
+            int vitri = 0;
+            vitri = datHangBindingSource.Position;
+            if (KiemTra_MaSoDDH_TrongPN(((DataRowView)datHangBindingSource[vitri])["MasoDDH"].ToString()) == 1)
+            {
+                MessageBox.Show("Bạn không thể sửa CTDDH này được!\nĐặt hàng đã tồn tại trong Phiếu nhập\n", "",
+                MessageBoxButtons.OK);
+                return;
+            }
+
+            vitriCTDH = cTDDHBindingSource.Position;
+            txtMASODDH.Text = txtMASODDHDH.Text;
+            cmbVATTU.Enabled = cTDDHGridControl.Enabled = btnThemCT.Enabled = btnXoaCT.Enabled = false;
+            kt_btnSuaCTDH = groupBox4.Enabled = btnLuuCT.Enabled = true;
+        }
+
+        private void btnLuuCT_Click(object sender, EventArgs e)
+        {
+            string sql = null;
+
+            if (Int32.Parse(seDONGIA.Value.ToString()) < 1 || Int32.Parse(seSOLUONG.Value.ToString()) < 1)
+            {
+                MessageBox.Show("Đơn giá hoặc số lượng không phù hợp\nVui lòng nhập lại!", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (kt_btnThemCTDH == true && KiemTraThemCTDDH(txtMASODDHDH.Text, cmbVATTU.SelectedValue.ToString()) == 1)
+            {
+                MessageBox.Show("CTDDH này đã tồn tại\nVui lòng nhập lại mã VT!", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(Program.connstr);
+                sqlConnection.Open();
+
+                if (kt_btnThemCTDH == true)
+                    sql = "exec sp_ThemCTDDH'" + txtMASODDH.Text + "','" + cmbVATTU.SelectedValue.ToString() + "'," + seSOLUONG.Value + "," + seDONGIA.Value;
+
+                if (kt_btnSuaCTDH == true)
+                    sql = "exec sp_SuaCTDDH'" + ((DataRowView)cTDDHBindingSource[vitriCTDH])["MasoDDH"].ToString() + "','" + ((DataRowView)cTDDHBindingSource[vitriCTDH])["MAVT"].ToString() + "'," + seSOLUONG.Value + "," + seDONGIA.Value;
+
+                int check = Program.ExecSqlNonQuery(sql);
+                if (check != 0)
+                    return;
+
+                sqlConnection.Close();
+                MessageBox.Show("Lưu thành công", "", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi ghi CTDDH.\n" + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+
+            this.cTDDHTableAdapter.Fill(this.dS.CTDDH);
+
+            cTDDHGridControl.Enabled = true;
+            kt_btnSuaCTDH = kt_btnThemCTDH = false;
+            vitriCTDH = 0;
+            btnThemCT.Enabled = btnXoaCT.Enabled = btnSuaCT.Enabled = true;
+            btnLuuCT.Enabled = false;
+            groupBox3.Enabled = groupBox4.Enabled = false;
+        }
+
+        private int KiemTraThemCTDDH(string maDDH, string maVT)
+        {
+            using (SqlConnection conn = new SqlConnection(Program.connstr))
+            using (SqlCommand cmd = new SqlCommand("sp_KiemTraKhoaCTDDH_ThemCTDDH", conn))
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("MasoDDH", maDDH);
+                cmd.Parameters.AddWithValue("MAVT", maVT);
+
+                var returnParameter = cmd.Parameters.Add("@result", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return (int)returnParameter.Value;
             }
         }
     }
