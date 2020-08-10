@@ -14,7 +14,14 @@ namespace QLVT_CSDLPT
     public partial class frmDatHang : Form
     {
         int vitriDH = 0;
+        private static bool kt_btnThemDH = false; //kiểm tra có đang bấm nút Thêm hay k
+        private static bool kt_btnSuaDH = false;
+
+
         int vitriCTDH = 0;
+        private static bool kt_btnThemCTDH = false; //kiểm tra có đang bấm nút Thêm hay k
+        private static bool kt_btnSuaCTDH = false;
+
         public frmDatHang()
         {
             InitializeComponent();
@@ -134,6 +141,91 @@ namespace QLVT_CSDLPT
             }
         }
 
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            vitriDH = datHangBindingSource.Position;
+            //bindingNavigatorCTDH.Enabled = false;
+            groupBox3.Enabled = txtMASODDH.Enabled = btnLuu.Enabled = btnUndo.Enabled = btnRefresh.Enabled = true;
+            datHangGridControl.Enabled = false;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = false;
 
+            txtMASODDHDH.Text = txtNHACC.Text = "";
+            txtMANV.Text = Program.username;
+            txtMAKHO.Text = cmbKHO.SelectedValue.ToString();
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            string sql = null;
+            if (txtMASODDHDH.Text.Trim() == "" || txtNHACC.Text.Trim() == "")
+            {
+                MessageBox.Show("Mã số DDH hoặc nhà CC không được thiếu!", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (kt_btnThemDH == true && KiemTraMaDDH(txtMASODDHDH.Text.ToString()) == 1)
+            {
+                MessageBox.Show("Mã DDH bị trùng\nVui lòng nhập mã khác!", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(Program.connstr);
+                sqlConnection.Open();
+
+                if (kt_btnThemDH == true)
+                    sql = "exec sp_ThemDatHang'" + txtMASODDHDH.Text + "','" + dtpNGAY.Value + "','" + txtNHACC.Text + "'," + Program.username + ",'" + cmbKHO.SelectedValue + "'";
+
+                if (kt_btnSuaDH == true)
+                    sql = "exec sp_SuaDatHang'" + ((DataRowView)datHangBindingSource[vitriDH])["MasoDDH"] + "','" + dtpNGAY.Value + "','" + txtNHACC.Text + "'," + Program.username + ",'" + cmbKHO.SelectedValue + "'";
+
+                int check = Program.ExecSqlNonQuery(sql);
+
+                if (check != 0)
+                    return;
+
+                sqlConnection.Close();
+                MessageBox.Show("Lưu thành công", "", MessageBoxButtons.OK);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi ghi DDH.\n" + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+
+            this.datHangTableAdapter.Fill(this.dS.DatHang);
+            datHangGridControl.Enabled = btnLuu.Enabled = true;
+            kt_btnSuaDH = kt_btnThemDH = groupBox3.Enabled = false;
+            vitriDH = 0;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = true;
+        }
+
+        private int KiemTraMaDDH(string maDDH)
+        {
+            using (SqlConnection conn = new SqlConnection(Program.connstr))
+            using (SqlCommand cmd = new SqlCommand("SP_KiemTraMSDDH_ThemDDH", conn))
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("MasoDDH", maDDH);
+
+                var returnParameter = cmd.Parameters.Add("@result", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return (int)returnParameter.Value;
+            }
+        }
+
+        private void cmbKHO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbKHO.ValueMember != "" && cmbKHO.SelectedValue != null)
+            {
+                txtMAKHO.Text = cmbKHO.SelectedValue.ToString();
+            }
+        }
     }
 }

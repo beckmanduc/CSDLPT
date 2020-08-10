@@ -79,7 +79,6 @@
             this.cmbKHO = new System.Windows.Forms.ComboBox();
             this.khoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtMAKHO = new DevExpress.XtraEditors.TextEdit();
-            this.dtpNGAY = new DevExpress.XtraEditors.DateEdit();
             this.txtNHACC = new DevExpress.XtraEditors.TextEdit();
             this.txtMANV = new DevExpress.XtraEditors.SpinEdit();
             this.txtMASODDHDH = new DevExpress.XtraEditors.TextEdit();
@@ -100,6 +99,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.dtpNGAY = new System.Windows.Forms.DateTimePicker();
             masoDDHLabel = new System.Windows.Forms.Label();
             mANVLabel = new System.Windows.Forms.Label();
             nhaCCLabel = new System.Windows.Forms.Label();
@@ -125,8 +125,6 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.khoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAKHO.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNHACC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMASODDHDH.Properties)).BeginInit();
@@ -302,6 +300,7 @@
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(23, 22);
             this.btnThem.Text = "Thêm";
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnXoa
             // 
@@ -331,6 +330,7 @@
             this.btnLuu.Size = new System.Drawing.Size(23, 22);
             this.btnLuu.Text = "Lưu";
             this.btnLuu.ToolTipText = "Lưu";
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnUndo
             // 
@@ -567,11 +567,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.dtpNGAY);
             this.groupBox3.Controls.Add(this.cmbKHO);
             this.groupBox3.Controls.Add(mAKHOLabel);
             this.groupBox3.Controls.Add(this.txtMAKHO);
             this.groupBox3.Controls.Add(nGAYLabel);
-            this.groupBox3.Controls.Add(this.dtpNGAY);
             this.groupBox3.Controls.Add(nhaCCLabel);
             this.groupBox3.Controls.Add(this.txtNHACC);
             this.groupBox3.Controls.Add(mANVLabel);
@@ -597,6 +597,7 @@
             this.cmbKHO.Size = new System.Drawing.Size(149, 25);
             this.cmbKHO.TabIndex = 10;
             this.cmbKHO.ValueMember = "MAKHO";
+            this.cmbKHO.SelectedIndexChanged += new System.EventHandler(this.cmbKHO_SelectedIndexChanged);
             // 
             // khoBindingSource
             // 
@@ -610,19 +611,6 @@
             this.txtMAKHO.Name = "txtMAKHO";
             this.txtMAKHO.Size = new System.Drawing.Size(109, 20);
             this.txtMAKHO.TabIndex = 9;
-            // 
-            // dtpNGAY
-            // 
-            this.dtpNGAY.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.datHangBindingSource, "NGAY", true));
-            this.dtpNGAY.EditValue = null;
-            this.dtpNGAY.Location = new System.Drawing.Point(107, 104);
-            this.dtpNGAY.Name = "dtpNGAY";
-            this.dtpNGAY.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpNGAY.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpNGAY.Size = new System.Drawing.Size(149, 20);
-            this.dtpNGAY.TabIndex = 8;
             // 
             // txtNHACC
             // 
@@ -808,6 +796,14 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 588);
             // 
+            // dtpNGAY
+            // 
+            this.dtpNGAY.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.datHangBindingSource, "NGAY", true));
+            this.dtpNGAY.Location = new System.Drawing.Point(107, 103);
+            this.dtpNGAY.Name = "dtpNGAY";
+            this.dtpNGAY.Size = new System.Drawing.Size(149, 25);
+            this.dtpNGAY.TabIndex = 11;
+            // 
             // frmDatHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -847,8 +843,6 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.khoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAKHO.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNHACC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMASODDHDH.Properties)).EndInit();
@@ -895,7 +889,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSOLUONG;
         private DevExpress.XtraGrid.Columns.GridColumn colDONGIA;
         private DevExpress.XtraEditors.TextEdit txtMAKHO;
-        private DevExpress.XtraEditors.DateEdit dtpNGAY;
         private DevExpress.XtraEditors.TextEdit txtNHACC;
         private DevExpress.XtraEditors.SpinEdit txtMANV;
         private DevExpress.XtraEditors.TextEdit txtMASODDHDH;
@@ -928,5 +921,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private System.Windows.Forms.DateTimePicker dtpNGAY;
     }
 }
