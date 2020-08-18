@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.Utils;
+using DevExpress.XtraGrid.Columns;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -408,5 +410,85 @@ namespace QLVT_CSDLPT
                 return (int)returnParameter.Value;
             }
         }
-    }
+
+        private void btnXoaCT_Click(object sender, EventArgs e)
+        {
+            groupBox4.Enabled = false;
+            int vitri = 0;
+            vitri = cTDDHBindingSource.Position;
+
+            if (MessageBox.Show("Bạn có thật sự muốn xóa CTDDH này? ", "Xác nhận",
+                       MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                try
+                {
+                    if (KiemTra_MaSoDDH_TrongPN(((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Position])["MasoDDH"].ToString()) == 1)
+                    {
+                        MessageBox.Show("Bạn không thể xóa CTDDH này được!\nĐặt hàng đã tồn tại trong Phiếu nhập\n", "",
+                        MessageBoxButtons.OK);
+                        return;
+                    }
+
+                    SqlConnection sqlConnection = new SqlConnection(Program.connstr);
+                    sqlConnection.Open();
+
+                    string sql = "exec sp_Xoa_CTDDH '" + ((DataRowView)cTDDHBindingSource[vitri])["MasoDDH"] + "','" + ((DataRowView)cTDDHBindingSource[vitri])["MAVT"] + "'";
+
+                    int check = Program.ExecSqlNonQuery(sql);
+                    if (check != 0)
+                        return;
+
+                    sqlConnection.Close();
+                    MessageBox.Show("Xóa CTDDH thành công!", "", MessageBoxButtons.OK);
+
+                    this.cTDDHTableAdapter.Fill(this.dS.CTDDH);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa CTDDH\n" + ex.Message, "",
+                        MessageBoxButtons.OK);
+                    return;
+                }
+            }
+        }
+
+        private void btnUndoCT_Click(object sender, EventArgs e)
+        {
+            cTDDHBindingSource.CancelEdit();
+
+        }
+
+        private void btnRefreshCT_Click(object sender, EventArgs e)
+        {
+            this.cTDDHTableAdapter.Fill(this.dS.CTDDH);
+            cTDDHGridControl.Enabled = true;
+            btnThemCT.Enabled = btnXoaCT.Enabled = btnSuaCT.Enabled = btnUndoCT.Enabled = btnRefreshCT.Enabled = true;
+            btnLuuCT.Enabled = groupBox4.Enabled = false;
+        }
+
+        private void cmbVATTU_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbVATTU.ValueMember != "" && cmbVATTU.SelectedValue != null)
+            {
+                txtMAVT.Text = cmbVATTU.SelectedValue.ToString();
+            }
+        }
+
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            Point clickPoint = datHangGridControl.PointToClient(Control.MousePosition);
+            var hitInfo = gridView1.CalcHitInfo(clickPoint);
+            if (hitInfo.InRowCell)
+            {
+                int rowHandle = hitInfo.RowHandle;
+                GridColumn column = hitInfo.Column;
+                String maDDH = ((DataRowView)datHangBindingSource[rowHandle])["MasoDDH"].ToString();
+                txtMASODDH.Text = maDDH;
+                cTDDHBindingSource.Filter = "MasoDDH = '" + maDDH + "'";
+                this.cTDDHTableAdapter.Fill(this.dS.CTDDH);
+
+            }
+        }
+    }   
 }

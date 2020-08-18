@@ -767,6 +767,7 @@
             this.colDVT});
             this.gridView1.GridControl = this.vattuGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             // 
             // colMAVT
             // 

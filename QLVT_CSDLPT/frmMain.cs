@@ -88,5 +88,17 @@ namespace QLVT_CSDLPT
                 f.Show();
             }
         }
+
+        private void btnPhieuNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmPhieuNhap));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmPhieuNhap f = new frmPhieuNhap();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

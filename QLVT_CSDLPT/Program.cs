@@ -99,7 +99,7 @@ namespace QLVT_CSDLPT
             }
         }
 
-        public static DataTable ExecSqlDataTable(String cmd, String connstr)
+        public static DataTable ExecSqlDataTable(String cmd)
         {
             try
             {
@@ -115,7 +115,6 @@ namespace QLVT_CSDLPT
                 MessageBox.Show(ex.Message);
                 return null;
             }
-
         }
 
 

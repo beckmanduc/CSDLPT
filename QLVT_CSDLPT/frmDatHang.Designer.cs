@@ -387,6 +387,8 @@
             this.colMAKHO});
             this.gridView1.GridControl = this.datHangGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colMasoDDH
             // 
@@ -473,6 +475,7 @@
             this.btnXoaCT.Name = "btnXoaCT";
             this.btnXoaCT.Size = new System.Drawing.Size(23, 22);
             this.btnXoaCT.Text = "Xóa";
+            this.btnXoaCT.Click += new System.EventHandler(this.btnXoaCT_Click);
             // 
             // btnSuaCT
             // 
@@ -502,6 +505,7 @@
             this.btnUndoCT.Name = "btnUndoCT";
             this.btnUndoCT.Size = new System.Drawing.Size(23, 22);
             this.btnUndoCT.Text = "Undo";
+            this.btnUndoCT.Click += new System.EventHandler(this.btnUndoCT_Click);
             // 
             // btnRefreshCT
             // 
@@ -511,6 +515,7 @@
             this.btnRefreshCT.Name = "btnRefreshCT";
             this.btnRefreshCT.Size = new System.Drawing.Size(23, 22);
             this.btnRefreshCT.Text = "Refresh";
+            this.btnRefreshCT.Click += new System.EventHandler(this.btnRefreshCT_Click);
             // 
             // cTDDHGridControl
             // 
@@ -538,6 +543,7 @@
             this.colDONGIA});
             this.gridView2.GridControl = this.cTDDHGridControl;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
             // 
             // colMasoDDH1
             // 
@@ -688,6 +694,7 @@
             this.cmbVATTU.Size = new System.Drawing.Size(176, 25);
             this.cmbVATTU.TabIndex = 8;
             this.cmbVATTU.ValueMember = "MAVT";
+            this.cmbVATTU.SelectedIndexChanged += new System.EventHandler(this.cmbVATTU_SelectedIndexChanged);
             // 
             // vattuBindingSource
             // 
