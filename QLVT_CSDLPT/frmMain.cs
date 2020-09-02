@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLVT_CSDLPT.Report;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -96,6 +97,42 @@ namespace QLVT_CSDLPT
             else
             {
                 frmPhieuNhap f = new frmPhieuNhap();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnInNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmInNhanVien));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmInNhanVien f = new frmInNhanVien();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnPhieuXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmPhieuXuat));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmPhieuXuat f = new frmPhieuXuat();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnTaoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmTaoTaiKhoan));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmTaoTaiKhoan f = new frmTaoTaiKhoan(Program.mGroup);
                 f.MdiParent = this;
                 f.Show();
             }

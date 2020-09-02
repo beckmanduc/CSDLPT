@@ -139,10 +139,10 @@ namespace QLVT_CSDLPT
                 return;
             }
 
-            if (txtLUONG.Value < 4000000)
+            if (seLUONG.Value < 4000000)
             {
                 MessageBox.Show("Lương không hợp lệ!\nVui lòng nhập số khác (Lương >= 4.000.000)", "", MessageBoxButtons.OK);
-                txtLUONG.Focus();
+                seLUONG.Focus();
                 return;
             }
 
@@ -253,6 +253,66 @@ namespace QLVT_CSDLPT
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             nhanVienBindingSource.CancelEdit();
+        }
+
+        private void btnChuyenNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            groupBox2.Visible = true;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = btnChuyenCN.Enabled = false;
+            txtChiNhanhC.Text = ((DataRowView)nhanVienBindingSource[0])["MACN"].ToString();
+            groupBox2.Enabled = true;
+        }
+
+        private void btnChuyen_Click(object sender, EventArgs e)
+        {
+            if (seMaNVM.Value < 1)
+            {
+                MessageBox.Show("Mã nhân viên không phù hợp (Mã > 0)\n", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (MessageBox.Show("Bạn có thật sự muốn chuyển nhân viên này ?? ", "Xác nhận",
+                       MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                try
+                {
+                    if (ChuyenNhanVien(Int32.Parse(cmbMaNVC.SelectedValue.ToString()), Int32.Parse(seMaNVM.Value.ToString())) == -1)
+                    {
+                        MessageBox.Show("Lỗi chuyển nhân viên \n", "", MessageBoxButtons.OK);
+                        return;
+                    }
+                    MessageBox.Show("Chuyển nhân viên thành công \n", "", MessageBoxButtons.OK);
+                    this.nhanVienTableAdapter.Fill(this.dS.NhanVien);
+                    MessageBox.Show("conga");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi chuyển nhân viên\n" + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnChuyen.Enabled = true;
+            groupBox2.Enabled = false;
+        }
+
+        private int ChuyenNhanVien(int maNVCu, int maNVMoi)
+        {
+            using (SqlConnection conn = new SqlConnection(Program.connstr))
+            using (SqlCommand cmd = new SqlCommand("SP_ChuyenCN", conn))
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("MANV", maNVCu);
+                cmd.Parameters.AddWithValue("NEWID", maNVMoi);
+
+                var returnParameter = cmd.Parameters.Add("@result", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return (int)returnParameter.Value;
+            }
         }
     }
     

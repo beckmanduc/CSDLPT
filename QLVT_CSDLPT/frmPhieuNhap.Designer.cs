@@ -85,6 +85,7 @@
             this.txtMAPNPN = new DevExpress.XtraEditors.TextEdit();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmbVatTu = new System.Windows.Forms.ComboBox();
+            this.vattuBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtMAVT = new DevExpress.XtraEditors.TextEdit();
             this.seDONGIA = new DevExpress.XtraEditors.SpinEdit();
             this.seSOLUONG = new DevExpress.XtraEditors.SpinEdit();
@@ -112,6 +113,7 @@
             this.cTPNTableAdapter = new QLVT_CSDLPT.DSTableAdapters.CTPNTableAdapter();
             this.khoTableAdapter = new QLVT_CSDLPT.DSTableAdapters.KhoTableAdapter();
             this.phieuNhapTableAdapter = new QLVT_CSDLPT.DSTableAdapters.PhieuNhapTableAdapter();
+            this.vattuTableAdapter = new QLVT_CSDLPT.DSTableAdapters.VattuTableAdapter();
             mAPNLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             masoDDHLabel = new System.Windows.Forms.Label();
@@ -141,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMASODDH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAPNPN.Properties)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vattuBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAVT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seDONGIA.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seSOLUONG.Properties)).BeginInit();
@@ -333,6 +336,7 @@
             this.btnXoa.Size = new System.Drawing.Size(23, 22);
             this.btnXoa.Text = "toolStripButton2";
             this.btnXoa.ToolTipText = "Xóa";
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -343,6 +347,7 @@
             this.btnSua.Size = new System.Drawing.Size(23, 22);
             this.btnSua.Text = "toolStripButton3";
             this.btnSua.ToolTipText = "Sửa";
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnLuu
             // 
@@ -353,6 +358,7 @@
             this.btnLuu.Size = new System.Drawing.Size(23, 22);
             this.btnLuu.Text = "toolStripButton4";
             this.btnLuu.ToolTipText = "Lưu";
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnUndo
             // 
@@ -408,6 +414,8 @@
             this.colMAKHO1});
             this.gridView3.GridControl = this.phieuNhapGridControl;
             this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsBehavior.Editable = false;
+            this.gridView3.DoubleClick += new System.EventHandler(this.gridView3_DoubleClick);
             // 
             // colMAPN
             // 
@@ -485,6 +493,7 @@
             this.btnThemCT.Size = new System.Drawing.Size(23, 22);
             this.btnThemCT.Text = "toolStripButton7";
             this.btnThemCT.ToolTipText = "Thêm";
+            this.btnThemCT.Click += new System.EventHandler(this.btnThemCT_Click);
             // 
             // btnXoaCT
             // 
@@ -495,6 +504,7 @@
             this.btnXoaCT.Size = new System.Drawing.Size(23, 22);
             this.btnXoaCT.Text = "toolStripButton8";
             this.btnXoaCT.ToolTipText = "Xoá";
+            this.btnXoaCT.Click += new System.EventHandler(this.btnXoaCT_Click);
             // 
             // btnSuaCT
             // 
@@ -505,6 +515,7 @@
             this.btnSuaCT.Size = new System.Drawing.Size(23, 22);
             this.btnSuaCT.Text = "toolStripButton9";
             this.btnSuaCT.ToolTipText = "Sửa";
+            this.btnSuaCT.Click += new System.EventHandler(this.btnSuaCT_Click);
             // 
             // btnLuuCT
             // 
@@ -515,6 +526,7 @@
             this.btnLuuCT.Size = new System.Drawing.Size(23, 22);
             this.btnLuuCT.Text = "toolStripButton10";
             this.btnLuuCT.ToolTipText = "Lưu";
+            this.btnLuuCT.Click += new System.EventHandler(this.btnLuuCT_Click);
             // 
             // btnUndoCTPN
             // 
@@ -525,6 +537,7 @@
             this.btnUndoCTPN.Size = new System.Drawing.Size(23, 22);
             this.btnUndoCTPN.Text = "toolStripButton11";
             this.btnUndoCTPN.ToolTipText = "Undo";
+            this.btnUndoCTPN.Click += new System.EventHandler(this.btnUndoCTPN_Click);
             // 
             // btnRefreshCTPN
             // 
@@ -535,6 +548,7 @@
             this.btnRefreshCTPN.Size = new System.Drawing.Size(23, 22);
             this.btnRefreshCTPN.Text = "toolStripButton12";
             this.btnRefreshCTPN.ToolTipText = "Refresh";
+            this.btnRefreshCTPN.Click += new System.EventHandler(this.btnRefreshCTPN_Click);
             // 
             // cTPNGridControl
             // 
@@ -562,6 +576,7 @@
             this.colDONGIA1});
             this.gridView4.GridControl = this.cTPNGridControl;
             this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsBehavior.Editable = false;
             // 
             // colMAPN1
             // 
@@ -704,12 +719,21 @@
             // 
             // cmbVatTu
             // 
+            this.cmbVatTu.DataSource = this.vattuBindingSource;
+            this.cmbVatTu.DisplayMember = "TENVT";
             this.cmbVatTu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVatTu.FormattingEnabled = true;
             this.cmbVatTu.Location = new System.Drawing.Point(88, 88);
             this.cmbVatTu.Name = "cmbVatTu";
             this.cmbVatTu.Size = new System.Drawing.Size(137, 25);
             this.cmbVatTu.TabIndex = 8;
+            this.cmbVatTu.ValueMember = "MAVT";
+            this.cmbVatTu.SelectedIndexChanged += new System.EventHandler(this.cmbVatTu_SelectedIndexChanged);
+            // 
+            // vattuBindingSource
+            // 
+            this.vattuBindingSource.DataMember = "Vattu";
+            this.vattuBindingSource.DataSource = this.dS;
             // 
             // txtMAVT
             // 
@@ -796,6 +820,7 @@
             this.gridView1.GridControl = this.datHangGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colMasoDDH
             // 
@@ -943,6 +968,10 @@
             // 
             this.phieuNhapTableAdapter.ClearBeforeFill = true;
             // 
+            // vattuTableAdapter
+            // 
+            this.vattuTableAdapter.ClearBeforeFill = true;
+            // 
             // frmPhieuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -983,6 +1012,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMAPNPN.Properties)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vattuBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAVT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seDONGIA.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seSOLUONG.Properties)).EndInit();
@@ -1074,5 +1104,7 @@
         private DevExpress.XtraEditors.SpinEdit seDONGIA;
         private DevExpress.XtraEditors.SpinEdit seSOLUONG;
         private DevExpress.XtraEditors.TextEdit txtMAPN;
+        private System.Windows.Forms.BindingSource vattuBindingSource;
+        private DSTableAdapters.VattuTableAdapter vattuTableAdapter;
     }
 }

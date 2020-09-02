@@ -45,13 +45,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripPX = new System.Windows.Forms.ToolStrip();
+            this.btnThem = new System.Windows.Forms.ToolStripButton();
+            this.btnXoa = new System.Windows.Forms.ToolStripButton();
+            this.btnSua = new System.Windows.Forms.ToolStripButton();
+            this.btnLuu = new System.Windows.Forms.ToolStripButton();
+            this.btnUndo = new System.Windows.Forms.ToolStripButton();
+            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.phieuXuatGridControl = new DevExpress.XtraGrid.GridControl();
             this.phieuXuatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dS = new QLVT_CSDLPT.DS();
@@ -62,11 +62,11 @@
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripCTPX = new System.Windows.Forms.ToolStrip();
+            this.btnThemCT = new System.Windows.Forms.ToolStripButton();
+            this.btnXoaCT = new System.Windows.Forms.ToolStripButton();
+            this.btnSuaCT = new System.Windows.Forms.ToolStripButton();
+            this.btnLuuCT = new System.Windows.Forms.ToolStripButton();
             this.btnUndoCTPX = new System.Windows.Forms.ToolStripButton();
             this.btnRefreshCTPX = new System.Windows.Forms.ToolStripButton();
             this.cTPXGridControl = new DevExpress.XtraGrid.GridControl();
@@ -77,12 +77,12 @@
             this.colSOLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDONGIA = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dtpNGAY = new System.Windows.Forms.DateTimePicker();
             this.cmbKHO = new System.Windows.Forms.ComboBox();
             this.khoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtHOTENKH = new DevExpress.XtraEditors.TextEdit();
             this.txtMAKHO = new DevExpress.XtraEditors.TextEdit();
             this.txtMANV = new DevExpress.XtraEditors.SpinEdit();
-            this.dtpNGAY = new DevExpress.XtraEditors.DateEdit();
             this.txtMAPXPX = new DevExpress.XtraEditors.TextEdit();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cmbVATTU = new System.Windows.Forms.ComboBox();
@@ -96,6 +96,7 @@
             this.colMAVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDVT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSOLUONGTON = new DevExpress.XtraGrid.Columns.GridColumn();
             this.vattuTableAdapter = new QLVT_CSDLPT.DSTableAdapters.VattuTableAdapter();
             this.tableAdapterManager = new QLVT_CSDLPT.DSTableAdapters.TableAdapterManager();
             this.cTPXTableAdapter = new QLVT_CSDLPT.DSTableAdapters.CTPXTableAdapter();
@@ -114,13 +115,13 @@
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripPX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
+            this.toolStripCTPX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
@@ -129,8 +130,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHOTENKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAKHO.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAPXPX.Properties)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vattuBindingSource)).BeginInit();
@@ -250,6 +249,7 @@
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(231, 25);
             this.cmbChiNhanh.TabIndex = 0;
+            this.cmbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanh_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -283,7 +283,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.toolStrip1);
+            this.groupBox2.Controls.Add(this.toolStripPX);
             this.groupBox2.Controls.Add(this.phieuXuatGridControl);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
@@ -293,74 +293,86 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bảng Phiếu Xuất";
             // 
-            // toolStrip1
+            // toolStripPX
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripButton5,
-            this.toolStripButton6});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 21);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(518, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripPX.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnThem,
+            this.btnXoa,
+            this.btnSua,
+            this.btnLuu,
+            this.btnUndo,
+            this.btnRefresh});
+            this.toolStripPX.Location = new System.Drawing.Point(3, 21);
+            this.toolStripPX.Name = "toolStripPX";
+            this.toolStripPX.Size = new System.Drawing.Size(518, 25);
+            this.toolStripPX.TabIndex = 1;
+            this.toolStripPX.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // btnThem
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "btnThem";
+            this.btnThem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
+            this.btnThem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(23, 22);
+            this.btnThem.Text = "btnThem";
+            this.btnThem.ToolTipText = "Them";
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // toolStripButton2
+            // btnXoa
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "btnXoa";
+            this.btnXoa.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
+            this.btnXoa.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(23, 22);
+            this.btnXoa.Text = "btnXoa";
+            this.btnXoa.ToolTipText = "Xoa";
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // toolStripButton3
+            // btnSua
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "btnSua";
+            this.btnSua.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSua.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.Image")));
+            this.btnSua.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(23, 22);
+            this.btnSua.Text = "btnSua";
+            this.btnSua.ToolTipText = "Sua";
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
-            // toolStripButton4
+            // btnLuu
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "btnLuu";
+            this.btnLuu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLuu.Image = ((System.Drawing.Image)(resources.GetObject("btnLuu.Image")));
+            this.btnLuu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(23, 22);
+            this.btnLuu.Text = "btnLuu";
+            this.btnLuu.ToolTipText = "Luu";
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
-            // toolStripButton5
+            // btnUndo
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "btnUndo";
+            this.btnUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.Image")));
+            this.btnUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(23, 22);
+            this.btnUndo.Text = "btnUndo";
+            this.btnUndo.ToolTipText = "Undo";
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
-            // toolStripButton6
+            // btnRefresh
             // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "btnRefresh";
+            this.btnRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(23, 22);
+            this.btnRefresh.Text = "btnRefresh";
+            this.btnRefresh.ToolTipText = "Refresh";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // phieuXuatGridControl
             // 
@@ -394,6 +406,7 @@
             this.colMAKHO});
             this.gridView2.GridControl = this.phieuXuatGridControl;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
             // 
             // colMAPX
             // 
@@ -437,7 +450,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.toolStrip2);
+            this.groupBox3.Controls.Add(this.toolStripCTPX);
             this.groupBox3.Controls.Add(this.cTPXGridControl);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(533, 3);
@@ -447,56 +460,64 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Bảng CTPX";
             // 
-            // toolStrip2
+            // toolStripCTPX
             // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton7,
-            this.toolStripButton8,
-            this.toolStripButton9,
-            this.toolStripButton10,
+            this.toolStripCTPX.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnThemCT,
+            this.btnXoaCT,
+            this.btnSuaCT,
+            this.btnLuuCT,
             this.btnUndoCTPX,
             this.btnRefreshCTPX});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 21);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(519, 25);
-            this.toolStrip2.TabIndex = 1;
-            this.toolStrip2.Text = "toolStrip2";
+            this.toolStripCTPX.Location = new System.Drawing.Point(3, 21);
+            this.toolStripCTPX.Name = "toolStripCTPX";
+            this.toolStripCTPX.Size = new System.Drawing.Size(519, 25);
+            this.toolStripCTPX.TabIndex = 1;
+            this.toolStripCTPX.Text = "toolStrip2";
             // 
-            // toolStripButton7
+            // btnThemCT
             // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton7.Text = "btnThemCT";
+            this.btnThemCT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnThemCT.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCT.Image")));
+            this.btnThemCT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnThemCT.Name = "btnThemCT";
+            this.btnThemCT.Size = new System.Drawing.Size(23, 22);
+            this.btnThemCT.Text = "btnThemCT";
+            this.btnThemCT.ToolTipText = "Thêm";
+            this.btnThemCT.Click += new System.EventHandler(this.btnThemCT_Click);
             // 
-            // toolStripButton8
+            // btnXoaCT
             // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton8.Text = "btnXoaCT";
+            this.btnXoaCT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnXoaCT.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaCT.Image")));
+            this.btnXoaCT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnXoaCT.Name = "btnXoaCT";
+            this.btnXoaCT.Size = new System.Drawing.Size(23, 22);
+            this.btnXoaCT.Text = "btnXoaCT";
+            this.btnXoaCT.ToolTipText = "Xóa";
+            this.btnXoaCT.Click += new System.EventHandler(this.btnXoaCT_Click);
             // 
-            // toolStripButton9
+            // btnSuaCT
             // 
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton9.Text = "btnSuaCT";
+            this.btnSuaCT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSuaCT.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaCT.Image")));
+            this.btnSuaCT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSuaCT.Name = "btnSuaCT";
+            this.btnSuaCT.Size = new System.Drawing.Size(23, 22);
+            this.btnSuaCT.Text = "btnSuaCT";
+            this.btnSuaCT.ToolTipText = "Sửa";
+            this.btnSuaCT.Click += new System.EventHandler(this.btnSuaCT_Click);
             // 
-            // toolStripButton10
+            // btnLuuCT
             // 
-            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
-            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton10.Text = "btnSuaCT";
+            this.btnLuuCT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLuuCT.Image = ((System.Drawing.Image)(resources.GetObject("btnLuuCT.Image")));
+            this.btnLuuCT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLuuCT.Name = "btnLuuCT";
+            this.btnLuuCT.Size = new System.Drawing.Size(23, 22);
+            this.btnLuuCT.Text = "btnLuuCT";
+            this.btnLuuCT.ToolTipText = "Lưu";
+            this.btnLuuCT.Click += new System.EventHandler(this.btnLuuCT_Click);
             // 
             // btnUndoCTPX
             // 
@@ -506,6 +527,8 @@
             this.btnUndoCTPX.Name = "btnUndoCTPX";
             this.btnUndoCTPX.Size = new System.Drawing.Size(23, 22);
             this.btnUndoCTPX.Text = "toolStripButton11";
+            this.btnUndoCTPX.ToolTipText = "Undo";
+            this.btnUndoCTPX.Click += new System.EventHandler(this.btnUndoCTPX_Click);
             // 
             // btnRefreshCTPX
             // 
@@ -515,6 +538,8 @@
             this.btnRefreshCTPX.Name = "btnRefreshCTPX";
             this.btnRefreshCTPX.Size = new System.Drawing.Size(23, 22);
             this.btnRefreshCTPX.Text = "toolStripButton12";
+            this.btnRefreshCTPX.ToolTipText = "Refresh";
+            this.btnRefreshCTPX.Click += new System.EventHandler(this.btnRefreshCTPX_Click);
             // 
             // cTPXGridControl
             // 
@@ -542,6 +567,7 @@
             this.colDONGIA});
             this.gridView3.GridControl = this.cTPXGridControl;
             this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsBehavior.Editable = false;
             // 
             // colMAPX1
             // 
@@ -577,6 +603,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.dtpNGAY);
             this.groupBox4.Controls.Add(this.cmbKHO);
             this.groupBox4.Controls.Add(hOTENKHLabel);
             this.groupBox4.Controls.Add(this.txtHOTENKH);
@@ -585,7 +612,6 @@
             this.groupBox4.Controls.Add(mANVLabel);
             this.groupBox4.Controls.Add(this.txtMANV);
             this.groupBox4.Controls.Add(nGAYLabel);
-            this.groupBox4.Controls.Add(this.dtpNGAY);
             this.groupBox4.Controls.Add(mAPXLabel);
             this.groupBox4.Controls.Add(this.txtMAPXPX);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -595,6 +621,15 @@
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Phiếu Xuất";
+            // 
+            // dtpNGAY
+            // 
+            this.dtpNGAY.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.phieuXuatBindingSource, "NGAY", true));
+            this.dtpNGAY.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNGAY.Location = new System.Drawing.Point(75, 73);
+            this.dtpNGAY.Name = "dtpNGAY";
+            this.dtpNGAY.Size = new System.Drawing.Size(122, 25);
+            this.dtpNGAY.TabIndex = 11;
             // 
             // cmbKHO
             // 
@@ -607,6 +642,7 @@
             this.cmbKHO.Size = new System.Drawing.Size(146, 25);
             this.cmbKHO.TabIndex = 10;
             this.cmbKHO.ValueMember = "MAKHO";
+            this.cmbKHO.SelectedIndexChanged += new System.EventHandler(this.cmbKHO_SelectedIndexChanged);
             // 
             // khoBindingSource
             // 
@@ -643,19 +679,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtMANV.Size = new System.Drawing.Size(122, 20);
             this.txtMANV.TabIndex = 5;
-            // 
-            // dtpNGAY
-            // 
-            this.dtpNGAY.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.phieuXuatBindingSource, "NGAY", true));
-            this.dtpNGAY.EditValue = null;
-            this.dtpNGAY.Location = new System.Drawing.Point(75, 81);
-            this.dtpNGAY.Name = "dtpNGAY";
-            this.dtpNGAY.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpNGAY.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpNGAY.Size = new System.Drawing.Size(122, 20);
-            this.dtpNGAY.TabIndex = 3;
             // 
             // txtMAPXPX
             // 
@@ -695,6 +718,7 @@
             this.cmbVATTU.Size = new System.Drawing.Size(147, 25);
             this.cmbVATTU.TabIndex = 8;
             this.cmbVATTU.ValueMember = "MAVT";
+            this.cmbVATTU.SelectedIndexChanged += new System.EventHandler(this.cmbVATTU_SelectedIndexChanged);
             // 
             // vattuBindingSource
             // 
@@ -764,14 +788,14 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMAVT,
             this.colTENVT,
-            this.colDVT});
+            this.colDVT,
+            this.colSOLUONGTON});
             this.gridView1.GridControl = this.vattuGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             // 
             // colMAVT
             // 
-            this.colMAVT.Caption = "MAVT";
             this.colMAVT.FieldName = "MAVT";
             this.colMAVT.Name = "colMAVT";
             this.colMAVT.Visible = true;
@@ -779,7 +803,6 @@
             // 
             // colTENVT
             // 
-            this.colTENVT.Caption = "TENVT";
             this.colTENVT.FieldName = "TENVT";
             this.colTENVT.Name = "colTENVT";
             this.colTENVT.Visible = true;
@@ -787,11 +810,17 @@
             // 
             // colDVT
             // 
-            this.colDVT.Caption = "DVT";
             this.colDVT.FieldName = "DVT";
             this.colDVT.Name = "colDVT";
             this.colDVT.Visible = true;
             this.colDVT.VisibleIndex = 2;
+            // 
+            // colSOLUONGTON
+            // 
+            this.colSOLUONGTON.FieldName = "SOLUONGTON";
+            this.colSOLUONGTON.Name = "colSOLUONGTON";
+            this.colSOLUONGTON.Visible = true;
+            this.colSOLUONGTON.VisibleIndex = 3;
             // 
             // vattuTableAdapter
             // 
@@ -843,16 +872,16 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripPX.ResumeLayout(false);
+            this.toolStripPX.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.toolStripCTPX.ResumeLayout(false);
+            this.toolStripCTPX.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
@@ -862,8 +891,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHOTENKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAKHO.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpNGAY.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAPXPX.Properties)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -890,9 +917,6 @@
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraGrid.GridControl vattuGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colMAVT;
-        private DevExpress.XtraGrid.Columns.GridColumn colTENVT;
-        private DevExpress.XtraGrid.Columns.GridColumn colDVT;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -916,7 +940,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSOLUONG;
         private DevExpress.XtraGrid.Columns.GridColumn colDONGIA;
         private DevExpress.XtraEditors.SpinEdit txtMANV;
-        private DevExpress.XtraEditors.DateEdit dtpNGAY;
         private DevExpress.XtraEditors.TextEdit txtMAPXPX;
         private System.Windows.Forms.ComboBox cmbKHO;
         private DevExpress.XtraEditors.TextEdit txtHOTENKH;
@@ -928,19 +951,24 @@
         private System.Windows.Forms.ComboBox cmbVATTU;
         private System.Windows.Forms.BindingSource khoBindingSource;
         private DSTableAdapters.KhoTableAdapter khoTableAdapter;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
-        private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.ToolStrip toolStripPX;
+        private System.Windows.Forms.ToolStripButton btnThem;
+        private System.Windows.Forms.ToolStripButton btnXoa;
+        private System.Windows.Forms.ToolStripButton btnSua;
+        private System.Windows.Forms.ToolStripButton btnLuu;
+        private System.Windows.Forms.ToolStripButton btnUndo;
+        private System.Windows.Forms.ToolStripButton btnRefresh;
+        private System.Windows.Forms.ToolStrip toolStripCTPX;
+        private System.Windows.Forms.ToolStripButton btnThemCT;
+        private System.Windows.Forms.ToolStripButton btnXoaCT;
+        private System.Windows.Forms.ToolStripButton btnSuaCT;
+        private System.Windows.Forms.ToolStripButton btnLuuCT;
         private System.Windows.Forms.ToolStripButton btnUndoCTPX;
         private System.Windows.Forms.ToolStripButton btnRefreshCTPX;
+        private System.Windows.Forms.DateTimePicker dtpNGAY;
+        private DevExpress.XtraGrid.Columns.GridColumn colMAVT;
+        private DevExpress.XtraGrid.Columns.GridColumn colTENVT;
+        private DevExpress.XtraGrid.Columns.GridColumn colDVT;
+        private DevExpress.XtraGrid.Columns.GridColumn colSOLUONGTON;
     }
 }

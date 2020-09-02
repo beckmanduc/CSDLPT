@@ -204,5 +204,6 @@ namespace QLVT_CSDLPT
             groupBox1.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = true;
         }
+
     }
 }

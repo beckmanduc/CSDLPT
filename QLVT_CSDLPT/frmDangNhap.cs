@@ -57,6 +57,7 @@ namespace QLVT_CSDLPT
             Program.mloginDN = Program.mlogin;
             Program.passwordDN = Program.password;
             Program.bds_dspm = bdsDSPM;
+
             string strLenh = "EXEC sp_DANGNHAP '" + Program.mlogin + "'";
             myReader = Program.ExecSqlDataReader(strLenh);
             if (myReader == null) return;
@@ -75,11 +76,18 @@ namespace QLVT_CSDLPT
             Program.frmChinh.HOTEN.Text = "Họ tên: " + Program.mHoten;
             Program.frmChinh.NHOM.Text = "Nhóm: " + Program.mGroup;
             myReader.Close();
+            this.Hide();
+            Program.frmChinh.Activate();
+            Program.frmChinh.Show();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult dr = MessageBox.Show("Bạn có muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbNhom = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnTaoTaiKhoan = new System.Windows.Forms.Button();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.txtTenDN = new System.Windows.Forms.TextBox();
-            this.txtMANV = new System.Windows.Forms.TextBox();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
+            this.txtMANV = new System.Windows.Forms.TextBox();
+            this.txtTenDN = new System.Windows.Forms.TextBox();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.btnTaoTaiKhoan = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbNhom = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,41 +61,46 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // cmbNhom
+            // txtMatKhau
             // 
-            this.cmbNhom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNhom.FormattingEnabled = true;
-            this.cmbNhom.Location = new System.Drawing.Point(235, 74);
-            this.cmbNhom.Name = "cmbNhom";
-            this.cmbNhom.Size = new System.Drawing.Size(267, 25);
-            this.cmbNhom.TabIndex = 0;
+            this.txtMatKhau.Location = new System.Drawing.Point(235, 222);
+            this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.Size = new System.Drawing.Size(267, 25);
+            this.txtMatKhau.TabIndex = 9;
             // 
-            // label1
+            // txtMANV
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(113, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nhóm";
+            this.txtMANV.Location = new System.Drawing.Point(235, 178);
+            this.txtMANV.Name = "txtMANV";
+            this.txtMANV.Size = new System.Drawing.Size(267, 25);
+            this.txtMANV.TabIndex = 8;
             // 
-            // label2
+            // txtTenDN
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(113, 129);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên Đăng nhập";
+            this.txtTenDN.Location = new System.Drawing.Point(235, 129);
+            this.txtTenDN.Name = "txtTenDN";
+            this.txtTenDN.Size = new System.Drawing.Size(267, 25);
+            this.txtTenDN.TabIndex = 7;
             // 
-            // label3
+            // btnThoat
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(113, 178);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 17);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Mã NV";
+            this.btnThoat.Location = new System.Drawing.Point(404, 268);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(79, 32);
+            this.btnThoat.TabIndex = 6;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // btnTaoTaiKhoan
+            // 
+            this.btnTaoTaiKhoan.Location = new System.Drawing.Point(253, 268);
+            this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
+            this.btnTaoTaiKhoan.Size = new System.Drawing.Size(99, 32);
+            this.btnTaoTaiKhoan.TabIndex = 5;
+            this.btnTaoTaiKhoan.Text = "Tạo tài khoản";
+            this.btnTaoTaiKhoan.UseVisualStyleBackColor = true;
+            this.btnTaoTaiKhoan.Click += new System.EventHandler(this.btnTaoTaiKhoan_Click);
             // 
             // label4
             // 
@@ -106,44 +111,41 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Mật khẩu";
             // 
-            // btnTaoTaiKhoan
+            // label3
             // 
-            this.btnTaoTaiKhoan.Location = new System.Drawing.Point(253, 268);
-            this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
-            this.btnTaoTaiKhoan.Size = new System.Drawing.Size(99, 32);
-            this.btnTaoTaiKhoan.TabIndex = 5;
-            this.btnTaoTaiKhoan.Text = "Tạo tài khoản";
-            this.btnTaoTaiKhoan.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(113, 178);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 17);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Mã NV";
             // 
-            // btnThoat
+            // label2
             // 
-            this.btnThoat.Location = new System.Drawing.Point(404, 268);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(79, 32);
-            this.btnThoat.TabIndex = 6;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(113, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Tên Đăng nhập";
             // 
-            // txtTenDN
+            // label1
             // 
-            this.txtTenDN.Location = new System.Drawing.Point(235, 129);
-            this.txtTenDN.Name = "txtTenDN";
-            this.txtTenDN.Size = new System.Drawing.Size(267, 25);
-            this.txtTenDN.TabIndex = 7;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(113, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nhóm";
             // 
-            // txtMANV
+            // cmbNhom
             // 
-            this.txtMANV.Location = new System.Drawing.Point(235, 178);
-            this.txtMANV.Name = "txtMANV";
-            this.txtMANV.Size = new System.Drawing.Size(267, 25);
-            this.txtMANV.TabIndex = 8;
-            // 
-            // txtMatKhau
-            // 
-            this.txtMatKhau.Location = new System.Drawing.Point(235, 222);
-            this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(267, 25);
-            this.txtMatKhau.TabIndex = 9;
+            this.cmbNhom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNhom.FormattingEnabled = true;
+            this.cmbNhom.Location = new System.Drawing.Point(235, 74);
+            this.cmbNhom.Name = "cmbNhom";
+            this.cmbNhom.Size = new System.Drawing.Size(267, 25);
+            this.cmbNhom.TabIndex = 0;
             // 
             // frmTaoTaiKhoan
             // 
@@ -152,7 +154,7 @@
             this.ClientSize = new System.Drawing.Size(1067, 588);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTaoTaiKhoan";
             this.Text = "frmTaoTaiKhoan";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
